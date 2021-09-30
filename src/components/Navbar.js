@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+ import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
@@ -18,6 +18,7 @@ import {
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
+  
 
   function scrollHandler() {
     if (window.scrollY >= 20) {
@@ -29,13 +30,20 @@ function NavBar() {
 
   window.addEventListener("scroll", scrollHandler);
 
+ 
   return (
+
+    
     <Navbar
       expanded={expand}
       fixed="top"
       expand="md"
-      className={navColour ? "sticky" : "navbar"}
+      className={([navColour ? "sticky" : "navbar", "bg-light",])}
+     
     >
+
+    
+    
       <Container>
         <Navbar.Brand href="/">
           <img src={logo} width="100px" alt="brand" />
@@ -46,16 +54,18 @@ function NavBar() {
             updateExpanded(expand ? false : "expanded");
           }}
         >
-          <span></span>
+          <span> </span>
           <span></span>
           <span></span>
         </Navbar.Toggle>
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto" defaultActiveKey="#home">
+          
             <Nav.Item>
               <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>
-                <AiOutlineHome style={{ marginBottom: "2px" }} /> 
-                Accueil
+                <AiOutlineHome style={{ marginBottom: "2px"}}/>  
+                 <strong style={{ color: '#800080'}}> Accueil </strong>
+                 
               </Nav.Link>
             </Nav.Item>
 
@@ -66,7 +76,8 @@ function NavBar() {
                 onClick={() => updateExpanded(false)}
               >
                 <AiOutlineUser style={{ marginBottom: "2px" }} /> 
-                Témoignages
+                <strong style={{ color: '#800080'}}> Témoignages </strong>
+                
               </Nav.Link>
             </Nav.Item>
 
@@ -79,7 +90,8 @@ function NavBar() {
                 <AiOutlineFundProjectionScreen
                   style={{ marginBottom: "2px" }}
                 />{" "}
-                Projets Realisés
+                <strong style={{ color: '#800080'}}> Projets Realisés </strong>
+                
               </Nav.Link>
             </Nav.Item>
 
@@ -92,7 +104,8 @@ function NavBar() {
                 <AiOutlineTeam
                   style={{ marginBottom: "2px" }}
                 />{" "}
-                Notre Équipe
+                 <strong style={{ color: '#800080'}}>   Notre Équipe </strong>
+              
               </Nav.Link>
             </Nav.Item>
 

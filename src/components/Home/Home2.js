@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import logo2 from "../../Assets/logo2.jpeg";
@@ -8,8 +9,39 @@ import {
   AiFillFacebook,
   AiFillPhone
 } from "react-icons/ai";
+import "./Home2.css";
+import { useState } from "react";
+import { send } from 'emailjs-com';
 
 function Home2() {
+
+  const [toSend, setToSend] = useState({
+    from_name: '',
+    to_name: '',
+    message: '',
+    reply_to: '',
+  });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    send(
+      'service_jkwruvw',
+      'template_ckirgaj',
+      toSend,
+      'user_Ec4nL2YPPUe0tU8D3sXWJ'
+    )
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+      })
+      .catch((err) => {
+        console.log('FAILED...', err);
+      });
+  };
+
+  const handleChange = (e) => {
+    setToSend({ ...toSend, [e.target.name]: e.target.value });
+  };
+  
   return (
     <Container fluid className="home-about-section" id="about">
       <Container>
@@ -46,7 +78,7 @@ Le professionnalisme est primordial dans notre secteur d'activité car, ce qui n
         <Row>
           <Col md={8} className="home-about-description">
             <h1 style={{ fontSize: "2.6em" }}>
-              NOS <span className="purple"> VALEURS </span>
+               <span className="purple"> VALEURS </span>
             </h1>
             <p className="home-about-body">
             En tant que professionnel du nettoyage, nous realisons nos prestations correspondant totalement a vos attentes,
@@ -76,12 +108,45 @@ dont nous avons la charge.
           </Col>
         </Row>
         
+        <div className="home-about-social">
+       <h1> <strong style={{ color: '#800080'}}> Contact</strong></h1>
+          <p>Vous avez une question, une remarque ou une suggestion ?</p>
+            <p> N'hésitez pas à nous contacter, nous serons ravis de vous aider.</p>
+          <form onSubmit={onSubmit}>
+            <input
+              type='text'
+              name='from_name'
+              placeholder='Votre Nom'
+              value={toSend.from_name}
+              onChange={handleChange}
+              className="email"
+            />
+            <textarea
+              type='text'
+              name='message'
+              placeholder='Votre message'
+              value={toSend.message}
+              onChange={handleChange}
+              className="email"
+            />
+            <input
+              type='text'
+              name='reply_to'
+              placeholder='Votre email'
+              value={toSend.reply_to}
+              onChange={handleChange}
+              className="email"
+            />
+            <button type='submit'>Submit</button>
+          </form>
+            
+        </div>
+        
+
         <Row>
           <Col md={12} className="home-about-social">
-            <h1>Trouvez nous</h1>
-            <p>
-              N'hesitez pas a <span className="purple">contacter </span>nous sur
-            </p>
+            <h1>Trouvez nous sur</h1>
+            
             <ul className="home-about-social-links">
               <li className="social-icons">
                 <a

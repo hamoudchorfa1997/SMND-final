@@ -13,7 +13,7 @@ function Footer() {
     <Container fluid className="footer">
       <Row>
         <Col md="4" className="footer-copywright">
-          <h3> Développé par Ahmedou Yahya & Mohamed Mahamoud Chorfa</h3>
+          
         </Col>
         <Col md="4" className="footer-copywright">
           <h3>Copyright © {year} AH</h3>
@@ -35,8 +35,8 @@ function Footer() {
                 style={{ color: "white" }}
                 target="_blank" 
                 rel="noopener noreferrer"
-                onClick={() => {navigator.clipboard.writeText("snmd1119@gmail.com")
-                                alert("l'adresse mail est bien copié")}}
+                onClick={() => {navigator.clipboard.writeText("smnd1119@gmail.com")
+                           alert("l'adresse mail est bien copié")}}
               >
                 <AiFillMail />
               </a>
